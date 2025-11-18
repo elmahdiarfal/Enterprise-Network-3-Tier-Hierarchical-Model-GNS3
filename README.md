@@ -61,10 +61,9 @@ The infrastructure includes:
 - **Management VLAN (99)** for out-of-band management
 
 ### Routing Features
-- **OSPF** for dynamic routing across all layers
+- **OSPF** for dynamic routing across all layers and FortiGate Firewall
 - **HSRP/VRRP** for gateway redundancy
 - **Inter-VLAN Routing** at distribution layer
-- **Static Routing** to FortiGate
 
 ### Security Features
 - **SSH-only** remote access
@@ -72,7 +71,15 @@ The infrastructure includes:
 - **Password encryption**
 - **Port security** with BPDU Guard
 - **VTP password** protection
+- **FortiGate Security**
 - *Note: All passwords are :* **lotm**
+
+### FortiGate Integration
+- Dual connections to core switches (internal network)
+- Management interface connected to management switch
+- OSPF routing with internal network
+- Security zones and policies
+- Interface redundancy with core layer
 
 ### Redundancy Features
 - **Dual-homed** access to distribution switches
@@ -157,6 +164,7 @@ The infrastructure includes:
 - Implement VLAN segmentation for departmental isolation
 - Configure dynamic routing with OSPF for optimal path selection
 - Implement high availability with HSRP and redundant links
+- FortiGate firewall integration and policy configuration
 
 ### Learning Outcomes
 - Understanding of enterprise network design principles
