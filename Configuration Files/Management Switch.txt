@@ -1,0 +1,41 @@
+
+
+-----------Management Switch in management network connected too fortigate-----------
+en
+conf t
+hostname MGMT-SW
+banner motd #AUTHORIZED ACCESS ONLY#
+no ip domain-lookup
+enable secret lotm
+
+username admin privilege 15 secret lotm
+
+line console 0
+password lotm
+login
+exit
+
+line vty 0 15
+transport input ssh
+login local
+exit
+
+ip domain-name entreprise.local
+
+crypto key generate rsa
+yes
+1024
+
+ip ssh version 2
+service password-encryption
+exit
+
+conf t
+interface vlan 1
+ip address 10.99.99.14 255.255.255.0 
+no shut
+exit 
+ip default-gateway 10.99.99.1
+exit
+copy run start
+

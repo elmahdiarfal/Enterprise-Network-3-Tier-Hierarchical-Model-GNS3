@@ -1,0 +1,67 @@
+FLOOR4_DEPT2_L2 (F4-DEP2-L2)
+
+
+en
+configure terminal
+hostname F4-DEP2-L2
+no ip domain-lookup
+enable secret lotm
+username admin privilege 15 secret lotm
+service password-encryption
+! VTP client
+vtp domain LOTM
+vtp mode client
+vtp password lotm
+vtp version 2
+
+vlan 41
+ name Floor4_Dept2
+vlan 99
+ name Management
+
+interface Vlan99
+ ip address 10.99.99.12 255.255.255.0
+ no shutdown
+ip default-gateway 10.99.99.1
+
+interface GigabitEthernet0/1
+ description Uplink to F4-DIST (trunk)   ! primary
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+interface GigabitEthernet0/48
+ description Uplink to F3-DIST (trunk)   ! secondary
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+interface range GigabitEthernet0/2 - 3
+ description Access ports
+ switchport mode access
+ switchport access vlan 41
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+interface range GigabitEthernet1/0 - 3
+ description Access ports
+ switchport mode access
+ switchport access vlan 41
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+spanning-tree mode rapid-pvst
+ip domain-name entreprise.local
+crypto key generate rsa
+1024
+ip ssh version 2
+line vty 0 15
+ transport input ssh
+ login local
+end
+copy run start
+

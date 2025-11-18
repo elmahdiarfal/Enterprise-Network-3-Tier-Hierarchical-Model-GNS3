@@ -1,0 +1,159 @@
+FLOOR1-DIST (hostname: F1-DIST)
+
+en
+conf t
+int range g0/0-1
+no switchport
+no shut
+exit
+configure terminal
+hostname F1-DIST
+no ip domain-lookup
+enable secret lotm
+username admin privilege 15 secret lotm
+service password-encryption
+ip routing
+! VTP - distribution: server (authoritative source for VLAN DB)
+vtp domain LOTM
+vtp mode server
+vtp password lotm
+vtp version 2
+vtp pruning
+interface Loopback0
+ ip address 10.255.1.1 255.255.255.255
+interface GigabitEthernet0/0
+ description To CORE-SW1
+ ip address 10.254.1.1 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/1
+ description To CORE-SW2
+ ip address 10.254.1.5 255.255.255.252
+ no shutdown
+
+! Trunks to Floor1 access switches (primary)
+interface GigabitEthernet2/0
+ description To f1-dept1-sw (trunk)
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+interface GigabitEthernet2/1
+ description To f1-dept2-sw (trunk)
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+interface GigabitEthernet2/2
+ description To f1-dept3-sw (trunk)
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+! Trunks to Floor2 access switches (secondary uplinks) <-- added
+interface GigabitEthernet3/0
+ description To F2-DEP1-L2 (trunk)  ! <-- added
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+interface GigabitEthernet3/1
+ description To F2-DEP2-L2 (trunk)  ! <-- added
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+interface GigabitEthernet3/2
+ description To F2-DEP3-L2 (trunk)  ! <-- added
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ no shutdown
+
+vlan 10
+ name Floor1_Dept1
+vlan 11
+ name Floor1_Dept2
+vlan 12
+ name Floor1_Dept3
+vlan 20
+ name Floor2_Dept1
+vlan 21
+ name Floor2_Dept2
+vlan 22
+ name Floor2_Dept3
+vlan 99
+ name Management
+
+interface Vlan10
+ ip address 10.1.10.2 255.255.255.0
+ no shutdown
+ standby 10 ip 10.1.10.1
+ standby 10 priority 110
+ standby 10 preempt
+ ip ospf 1 area 0
+interface Vlan11
+ ip address 10.1.11.2 255.255.255.0
+ no shutdown
+ standby 11 ip 10.1.11.1
+ standby 11 priority 110
+ standby 11 preempt
+ ip ospf 1 area 0
+interface Vlan12
+ ip address 10.1.12.2 255.255.255.0
+ no shutdown
+ standby 12 ip 10.1.12.1
+ standby 12 priority 110
+ standby 12 preempt
+ ip ospf 1 area 0
+interface Vlan20
+ ip address 10.2.20.3 255.255.255.0
+ no shutdown
+ standby 20 ip 10.2.20.1
+ standby 20 priority 100
+ standby 20 preempt
+ ip ospf 1 area 0
+interface Vlan21
+ ip address 10.2.21.3 255.255.255.0
+ no shutdown
+ standby 21 ip 10.2.21.1
+ standby 21 priority 100
+ standby 21 preempt
+ ip ospf 1 area 0
+interface Vlan22
+ ip address 10.2.22.3 255.255.255.0
+ no shutdown
+ standby 22 ip 10.2.22.1
+ standby 22 priority 100
+ standby 22 preempt
+ ip ospf 1 area 0
+
+interface Vlan99
+ ip address 10.99.99.2 255.255.255.0
+ no shutdown
+ standby 99 ip 10.99.99.1
+ standby 99 priority 110
+ standby 99 preempt
+ ip ospf 1 area 0
+router ospf 1
+ network 10.0.0.0 0.255.255.255 area 0
+ip domain-name entreprise.local
+crypto key generate rsa
+1024
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10 root primary
+spanning-tree vlan 20 root primary
+spanning-tree vlan 30 root primary
+spanning-tree vlan 40 root secondary
+spanning-tree vlan 50 root secondary
+spanning-tree vlan 60 root secondary
+line vty 0 15
+ transport input ssh
+ login local
+end
+write memory

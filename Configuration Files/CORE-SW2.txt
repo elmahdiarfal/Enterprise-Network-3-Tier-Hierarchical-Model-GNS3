@@ -1,0 +1,57 @@
+CORE-SWITCH-2 (hostname: CORE-SW2)
+
+en
+conf t
+int range g0/0-3
+no switchport
+no shut
+int g1/1
+no switchport
+no shut
+exit
+configure terminal
+hostname CORE-SW2
+no ip domain-lookup
+enable secret lotm
+username admin privilege 15 secret lotm
+service password-encryption
+ip routing
+! VTP - core: transparent
+vtp domain LOTM
+vtp mode transparent
+vtp version 2
+interface Loopback0
+ ip address 10.255.10.2 255.255.255.255
+interface GigabitEthernet1/1
+ description To FortiGate port3
+ ip address 10.254.2.5 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/0
+ description To F1-DIST
+ ip address 10.254.1.6 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/1
+ description To F2-DIST
+ ip address 10.254.1.14 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/2
+ description To F3-DIST
+ ip address 10.254.1.22 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/3
+ description To F4-DIST
+ ip address 10.254.1.30 255.255.255.252
+ no shutdown
+router ospf 1
+ network 10.0.0.0 0.255.255.255 area 0
+ip domain-name entreprise.local
+crypto key generate rsa
+1024
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+line vty 0 15
+ transport input ssh
+ login local
+end
+write memory
