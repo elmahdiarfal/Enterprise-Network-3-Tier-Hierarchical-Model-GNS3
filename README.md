@@ -1,4 +1,4 @@
-# Enterprise Network Infrastructure
+# Enterprise 3-tier Network Infrastructure Lab 🛠️
 
 **Author:** EL Mahdi ARFAL  
 **Academic Year:** 2025/2026
@@ -21,9 +21,9 @@
 
 ---
 
-## Project Overview
+## 🚀 Project Overview
 
-This project implements a comprehensive enterprise network infrastructure spanning four floors with redundant distribution layers, core switching, and centralized management. The network features hierarchical design principles with access, distribution, and core layers, providing high availability, scalability, and security.
+A hands-on GNS3 lab implementing a comprehensive enterprise network infrastructure spanning four floors with redundant distribution layers, core switching, and centralized management. The network features hierarchical design principles with access, distribution, and core layers, providing high availability, scalability, and security.
 
 The infrastructure includes:
 - **4 Floors** with departmental segmentation
@@ -33,7 +33,7 @@ The infrastructure includes:
 - **1 Management Switch** for network administration
 - **FortiGate Firewall** for security and internet connectivity
 
-## Network Architecture
+## 🌐 Network Architecture
 
 ### Topology
 
@@ -98,7 +98,7 @@ The infrastructure includes:
 - **TCP/IP** for network management
 - **DNS** with domain "entreprise.local"
 
-## Addressing Scheme
+## 🌍 Addressing Scheme
 
 ### Management Network
 - **Subnet:** 10.99.99.0/24
@@ -149,7 +149,7 @@ The infrastructure includes:
 - **Version:** 2
 - **Mode:** Server (Distribution), Client (Access), Transparent (Core)
 
-## Objectives & Learning Outcomes
+## ✅ Objectives & Learning Outcomes
 
 ### Technical Objectives
 - Design and implement a scalable enterprise network infrastructure
@@ -167,7 +167,7 @@ The infrastructure includes:
 - Knowledge of security best practices in network infrastructure
 - Ability to manage complex multi-vendor environments
 
-## Requirements
+## ⚠️ Requirements
 
 ### Software Requirements
 - **GNS3**
@@ -184,7 +184,7 @@ The infrastructure includes:
 - **Storage:** 20GB free space
 - **CPU:** Multi-core processor for virtualization
 
-## Files & Repository Structure
+## 📁 Files & Repository Structure
 
 ```
 enterprise-network-infrastructure/
@@ -205,7 +205,7 @@ enterprise-network-infrastructure/
 ```
 
 
-## How to Import/Run in GNS3
+## ⚙️ How to Import/Run in GNS3
 
 ### Step 1: Prepare GNS3 Environment
 1. Install GNS3 and GNS3 VM  
