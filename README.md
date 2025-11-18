@@ -209,7 +209,6 @@ enterprise-network-infrastructure/
 ### Step 1: Prepare GNS3 Environment
 1. Install GNS3 and GNS3 VM  
 2. Import required IOS images:  
-   - Cisco IOSv 15.9(3)M9  
    - Cisco IOSvL2 15.2.1  
    - FortiGate 7.0.10  
 
