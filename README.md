@@ -157,7 +157,6 @@ The infrastructure includes:
 - Implement VLAN segmentation for departmental isolation
 - Configure dynamic routing with OSPF for optimal path selection
 - Implement high availability with HSRP and redundant links
-- Establish secure management practices and access controls
 
 ### Learning Outcomes
 - Understanding of enterprise network design principles
