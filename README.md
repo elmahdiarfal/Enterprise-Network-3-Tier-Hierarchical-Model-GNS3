@@ -37,7 +37,7 @@ The infrastructure includes:
 
 ### Topology
 
-![Topology](./topology.png)
+![Topology](./Topology.png)
 
 ### Layer Functions:
 - **Core Layer:** High-speed packet forwarding between distribution layers
