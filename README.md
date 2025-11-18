@@ -1,8 +1,8 @@
 # Enterprise 3-tier Network Infrastructure Lab 🛠️
 
-**Author:** EL Mahdi ARFAL  
-**Academic Year:** 2025/2026
-**Institution:** Institut National des Postes et Télécommunications
+**Author:** El Mahdi ARFAL  
+**Academic Year:** 2025/2026  
+**Institution:** Institut National des Postes et Télécommunications  
 
 ---
 
