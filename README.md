@@ -72,6 +72,7 @@ The infrastructure includes:
 - **Password encryption**
 - **Port security** with BPDU Guard
 - **VTP password** protection
+*Note: All passwords are :* **lotm**
 
 ### Redundancy Features
 - **Dual-homed** access to distribution switches
