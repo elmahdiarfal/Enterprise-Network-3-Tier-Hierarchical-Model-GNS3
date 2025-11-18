@@ -165,7 +165,6 @@ The infrastructure includes:
 - Experience with layer 2 and layer 3 protocols integration
 - Skills in network redundancy and high availability design
 - Knowledge of security best practices in network infrastructure
-- Ability to manage complex multi-vendor environments
 
 ## ⚠️ Requirements
 
